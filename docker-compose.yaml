@@ -1,0 +1,19 @@
+version: '3'
+services:
+  spiderfoot:
+    build:
+      context: .
+      dockerfile: docker/spiderfoot.Dockerfile
+    ports:
+      - "5001:5001"
+    volumes:
+      - ./output:/opt/spiderfoot/output
+    container_name: spiderfoot_ronin
+
+  ntfy:
+    image: binwiederhier/ntfy
+    ports:
+      - "80:80"
+    volumes:
+      - ./ntfy:/etc/ntfy
+    restart: always
